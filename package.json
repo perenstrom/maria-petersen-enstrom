@@ -8,19 +8,25 @@
     "start": "next start",
     "what": "ECHO Package system: npm",
     "test": "jest",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watch",
+    "contentful-typescript-codegen": "contentful-typescript-codegen --output types/contentful/contentful.d.ts"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
+    "contentful": "^8.4.2",
     "next": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@contentful/rich-text-types": "^15.0.0",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.4.0",
     "@types/react": "^17.0.14",
+    "contentful-management": "^7.30.0",
+    "contentful-typescript-codegen": "^3.2.2",
+    "dotenv": "^10.0.0",
     "eslint": "^7.31.0",
     "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-react": "^7.24.0",

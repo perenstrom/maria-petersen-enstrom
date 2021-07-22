@@ -1,9 +1,16 @@
 import React from 'react';
-import { Box, Container, Paper, Typography } from '@material-ui/core';
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
+import { Box, Container, Paper, Typography } from '@material-ui/core';
+import { Entry } from 'contentful';
+import { IPage } from 'types/contentful/contentful';
+import { getMainPage } from 'services/contentful';
 
-const IndexPage: NextPage<{}> = ({}) => {
+interface Props {
+  pageData: Entry<IPage>;
+}
+
+const IndexPage: NextPage<Props> = ({ pageData }) => {
   return (
     <Container maxWidth="md">
       <Head>
@@ -16,17 +23,20 @@ const IndexPage: NextPage<{}> = ({}) => {
               Opinionated NextJS Typescript starter
             </Typography>
             <Typography variant={'subtitle1'}>With Material-UI</Typography>
-            <Typography variant={'body1'}>
-              This is my preferred starter template for building NextJS apps in
-              Typescript. This version also includes{' '}
-              <a href="https://material-ui.com/">Material UI</a> for quicker
-              prototyping.
-            </Typography>
+            <pre>{JSON.stringify(pageData, null, 2)}</pre>
           </Box>
         </Paper>
       </Box>
     </Container>
   );
+};
+
+export const getStaticProps: GetStaticProps<Props, {}> = async () => {
+  const pageData = await getMainPage();
+
+  return {
+    props: { pageData }
+  };
 };
 
 export default IndexPage;
