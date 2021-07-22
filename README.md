@@ -1,1 +1,1 @@
-A starter template for creating NextJS + Typescript apps.
+Personal site for Maria Petersén Enström.
