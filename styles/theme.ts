@@ -1,41 +1,52 @@
 import { createTheme } from '@material-ui/core';
 
 export const theme = createTheme({
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        body: {
+          backgroundImage: 'url(bg.png)',
+          backgroundRepeat: 'repeat'
+        }
+      }
+    }
+  },
   palette: {
     type: 'light'
   },
   typography: {
-    fontSize: 16,
+    fontFamily: 'Merienda, sans-serif',
+    fontSize: 24,
     h1: {
-      fontSize: '2rem',
+      fontSize: '2,625rem',
       fontWeight: 700
     },
     h2: {
-      fontSize: '1.5rem',
+      fontSize: '2rem',
       fontWeight: 700,
       paddingTop: '2rem'
     },
     h3: {
-      fontSize: '1.2rem',
+      fontSize: '1.8rem',
       fontWeight: 700
     },
     h4: {
-      fontSize: '1.15rem',
+      fontSize: '1.725rem',
       fontWeight: 700
     },
     h5: {
-      fontSize: '1.07rem',
+      fontSize: '1.6rem',
       fontWeight: 700
     },
     h6: {
-      fontSize: '1rem',
+      fontSize: '1.5rem',
       fontWeight: 700
     },
     body1: {
-      fontSize: '1rem'
+      fontSize: '1.5rem'
     },
     body2: {
-      fontSize: '1rem'
+      fontSize: '1.5rem'
     },
     button: {
       textTransform: 'none'

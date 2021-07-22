@@ -16,12 +16,12 @@ const IndexPage: NextPage<{}> = ({}) => {
               Opinionated NextJS Typescript starter
             </Typography>
             <Typography variant={'subtitle1'}>With Material-UI</Typography>
-            <p>
+            <Typography variant={'body1'}>
               This is my preferred starter template for building NextJS apps in
               Typescript. This version also includes{' '}
               <a href="https://material-ui.com/">Material UI</a> for quicker
               prototyping.
-            </p>
+            </Typography>
           </Box>
         </Paper>
       </Box>
