@@ -1,12 +1,6 @@
 import { Document } from '@contentful/rich-text-types';
 import { Asset } from 'contentful';
 
-export interface HeroBlock {
-  contentType: 'hero';
-  heading?: string;
-  image?: Asset;
-}
-
 export interface TextBlock {
   contentType: 'text';
   heading?: string;
@@ -18,8 +12,15 @@ export interface GalleryBlock {
   images?: Asset[];
 }
 
+export interface HeroBlock {
+  heading?: string;
+  heroImage?: Asset;
+}
+
 export interface Page {
   name: string;
   slug: string;
-  blocks: (HeroBlock | TextBlock | GalleryBlock)[];
+  heading?: string;
+  heroImage?: Asset;
+  blocks: (TextBlock | GalleryBlock)[];
 }

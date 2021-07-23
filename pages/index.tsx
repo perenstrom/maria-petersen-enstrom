@@ -13,7 +13,8 @@ interface Props {
 }
 
 const IndexPage: NextPage<Props> = ({ pageData }) => {
-  return (
+  return (<>
+    <HeroBlock heading={pageData.heading} heroImage={pageData.heroImage} />
     <Container maxWidth="md">
       <Head>
         <title>Maria Petersén Enström Design</title>
@@ -21,8 +22,6 @@ const IndexPage: NextPage<Props> = ({ pageData }) => {
       <Box mt={6}>
         {pageData.blocks.map(block => {
           switch (block.contentType) {
-            case 'hero':
-              return <HeroBlock {...block} />;
             case 'gallery':
               return <GalleryBlock {...block} />;
             case 'text':
@@ -30,7 +29,7 @@ const IndexPage: NextPage<Props> = ({ pageData }) => {
           }
         })}
       </Box>
-    </Container>
+    </Container></>
   );
 };
 

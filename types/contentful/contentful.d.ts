@@ -28,37 +28,18 @@ export interface IGallery extends Entry<IGalleryFields> {
   };
 }
 
-export interface IHeroFields {
-  /** Heading */
-  heading?: string | undefined;
-
-  /** Image */
-  image?: Asset | undefined;
-}
-
-export interface IHero extends Entry<IHeroFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'hero';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
 export interface IPageFields {
   /** Name */
   name?: string | undefined;
 
   /** Slug */
   slug?: string | undefined;
+
+  /** Heading */
+  heading?: string | undefined;
+
+  /** Hero Image */
+  heroImage?: Asset | undefined;
 
   /** Blocks */
   blocks?: (IGallery | IHero | IText)[] | undefined;
@@ -106,7 +87,7 @@ export interface IText extends Entry<ITextFields> {
   };
 }
 
-export type CONTENT_TYPE = 'gallery' | 'hero' | 'page' | 'text';
+export type CONTENT_TYPE = 'gallery' | 'page' | 'text';
 
 export type LOCALE_CODE = 'en-US';
 

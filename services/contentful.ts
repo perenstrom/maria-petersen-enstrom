@@ -1,12 +1,11 @@
 import { createClient } from 'contentful';
 import {
   IGallery,
-  IHero,
   IPage,
   IPageFields,
   IText
 } from 'types/contentful/contentful';
-import { GalleryBlock, HeroBlock, Page, TextBlock } from 'types/local';
+import { GalleryBlock, Page, TextBlock } from 'types/local';
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -24,20 +23,14 @@ export const getMainPage = async (): Promise<Page> => {
   return {
     name: page.fields.name,
     slug: page.fields.slug,
+    heading: page.fields.heading,
+    heroImage: page.fields.heroImage,
     blocks: page.fields.blocks.map(b => formatBlock(b))
   };
 };
 
-const formatBlock = (
-  block: IGallery | IHero | IText
-): GalleryBlock | HeroBlock | TextBlock => {
+const formatBlock = (block: IGallery | IText): GalleryBlock | TextBlock => {
   switch (block.sys.contentType.sys.id) {
-    case 'hero':
-      return {
-        contentType: 'hero',
-        heading: (block as IHero).fields.heading,
-        image: (block as IHero).fields.image
-      } as HeroBlock;
     case 'gallery':
       return {
         contentType: 'gallery',
