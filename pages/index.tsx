@@ -1,13 +1,12 @@
 import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import { Box, Container, Paper, Typography } from '@material-ui/core';
-import { Entry } from 'contentful';
-import { IPage } from 'types/contentful/contentful';
+import { Box, Container, Paper } from '@material-ui/core';
 import { getMainPage } from 'services/contentful';
+import { Page } from 'types/local';
 
 interface Props {
-  pageData: Entry<IPage>;
+  pageData: Page;
 }
 
 const IndexPage: NextPage<Props> = ({ pageData }) => {
@@ -17,15 +16,15 @@ const IndexPage: NextPage<Props> = ({ pageData }) => {
         <title>NextJS Typescript Starter</title>
       </Head>
       <Box mt={6}>
-        <Paper>
-          <Box p={2}>
-            <Typography variant={'h1'}>
-              Opinionated NextJS Typescript starter
-            </Typography>
-            <Typography variant={'subtitle1'}>With Material-UI</Typography>
-            <pre>{JSON.stringify(pageData, null, 2)}</pre>
+        {pageData.blocks.map(block => (
+          <Box mt={2}>
+            <Paper>
+              <Box p={2}>
+                <pre>{JSON.stringify(block, null, 2)}</pre>
+              </Box>
+            </Paper>
           </Box>
-        </Paper>
+        ))}
       </Box>
     </Container>
   );

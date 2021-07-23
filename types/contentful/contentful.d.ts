@@ -3,31 +3,6 @@
 import { Asset, Entry } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
-export interface IBlockFields {
-  /** Heading */
-  heading: string;
-
-  /** Image */
-  image: Asset;
-}
-
-export interface IBlock extends Entry<IBlockFields> {
-  sys: {
-    id: string;
-    type: string;
-    createdAt: string;
-    updatedAt: string;
-    locale: string;
-    contentType: {
-      sys: {
-        id: 'block';
-        linkType: 'ContentType';
-        type: 'Link';
-      };
-    };
-  };
-}
-
 export interface IGalleryFields {
   /** Name */
   name?: string | undefined;
@@ -53,6 +28,31 @@ export interface IGallery extends Entry<IGalleryFields> {
   };
 }
 
+export interface IHeroFields {
+  /** Heading */
+  heading?: string | undefined;
+
+  /** Image */
+  image?: Asset | undefined;
+}
+
+export interface IHero extends Entry<IHeroFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'hero';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
 export interface IPageFields {
   /** Name */
   name?: string | undefined;
@@ -60,8 +60,8 @@ export interface IPageFields {
   /** Slug */
   slug?: string | undefined;
 
-  /** Block */
-  block?: (IGallery | IBlock | IText)[] | undefined;
+  /** Blocks */
+  blocks?: (IGallery | IHero | IText)[] | undefined;
 }
 
 export interface IPage extends Entry<IPageFields> {
@@ -106,7 +106,7 @@ export interface IText extends Entry<ITextFields> {
   };
 }
 
-export type CONTENT_TYPE = 'block' | 'gallery' | 'page' | 'text';
+export type CONTENT_TYPE = 'gallery' | 'hero' | 'page' | 'text';
 
 export type LOCALE_CODE = 'en-US';
 
