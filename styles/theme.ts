@@ -1,4 +1,4 @@
-import { createTheme } from '@material-ui/core';
+import { colors, createTheme } from '@material-ui/core';
 
 export const theme = createTheme({
   overrides: {
@@ -7,6 +7,9 @@ export const theme = createTheme({
         body: {
           backgroundImage: 'url(bg.png)',
           backgroundRepeat: 'repeat'
+        },
+        a: {
+          color: 'rgba(0, 0, 0, 0.87)'
         }
       }
     }
