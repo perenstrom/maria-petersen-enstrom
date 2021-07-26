@@ -9,6 +9,7 @@
     "what": "ECHO Package system: npm",
     "test": "jest",
     "test-watch": "jest --watch",
+    "lint": "next lint",
     "contentful-typescript-codegen": "contentful-typescript-codegen --output types/contentful/contentful.d.ts"
   },
   "dependencies": {
@@ -31,6 +32,7 @@
     "contentful-typescript-codegen": "^3.2.2",
     "dotenv": "^10.0.0",
     "eslint": "^7.31.0",
+    "eslint-config-next": "^11.0.1",
     "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",

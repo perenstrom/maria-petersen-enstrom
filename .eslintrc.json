@@ -5,20 +5,10 @@
     "es2021": true,
     "jest/globals": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended"
-  ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
+  "extends": ["next", "eslint:recommended"],
   "plugins": ["react", "jest"],
   "rules": {
-    "react/prop-types": [0]
+    "react/prop-types": [0],
+    "react/display-name": [0]
   }
 }
