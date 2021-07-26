@@ -1,7 +1,7 @@
-require('sharp');
-const { withPlaiceholder } = require('@plaiceholder/next');
-module.exports = withPlaiceholder({
+//require('sharp');
+//const { withPlaiceholder } = require('@plaiceholder/next');
+module.exports = {
   images: {
     domains: ['images.ctfassets.net']
   }
-});
+};
