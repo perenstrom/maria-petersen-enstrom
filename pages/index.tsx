@@ -13,23 +13,25 @@ interface Props {
 }
 
 const IndexPage: NextPage<Props> = ({ pageData }) => {
-  return (<>
-    <HeroBlock heading={pageData.heading} heroImage={pageData.heroImage} />
-    <Container maxWidth="md">
-      <Head>
-        <title>Maria Petersén Enström Design</title>
-      </Head>
-      <Box mt={6}>
-        {pageData.blocks.map(block => {
-          switch (block.contentType) {
-            case 'gallery':
-              return <GalleryBlock {...block} />;
-            case 'text':
-              return <TextBlock {...block} />;
-          }
-        })}
-      </Box>
-    </Container></>
+  return (
+    <>
+      <HeroBlock heading={pageData.heading} heroImage={pageData.heroImage} />
+      <Container maxWidth="md">
+        <Head>
+          <title>Maria Petersén Enström Design</title>
+        </Head>
+        <Box mt={6}>
+          {pageData.blocks.map(block => {
+            switch (block.contentType) {
+              case 'gallery':
+                return <GalleryBlock key={block.id} {...block} />;
+              case 'text':
+                return <TextBlock key={block.id} {...block} />;
+            }
+          })}
+        </Box>
+      </Container>
+    </>
   );
 };
 

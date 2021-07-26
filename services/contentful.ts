@@ -1,11 +1,12 @@
-import { createClient } from 'contentful';
+import { Asset, createClient } from 'contentful';
+import { getPlaiceholder } from 'plaiceholder';
 import {
   IGallery,
   IPage,
   IPageFields,
   IText
 } from 'types/contentful/contentful';
-import { GalleryBlock, Page, TextBlock } from 'types/local';
+import { GalleryBlock, Image, Page, TextBlock } from 'types/local';
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -25,22 +26,38 @@ export const getMainPage = async (): Promise<Page> => {
     slug: page.fields.slug,
     heading: page.fields.heading,
     heroImage: page.fields.heroImage,
-    blocks: page.fields.blocks.map(b => formatBlock(b))
+    blocks: await Promise.all(page.fields.blocks.map(formatBlock))
   };
 };
 
-const formatBlock = (block: IGallery | IText): GalleryBlock | TextBlock => {
+const formatBlock = async (
+  block: IGallery | IText
+): Promise<GalleryBlock | TextBlock> => {
   switch (block.sys.contentType.sys.id) {
     case 'gallery':
       return {
         contentType: 'gallery',
-        images: (block as IGallery).fields.images
+        id: block.sys.id,
+        images: await Promise.all(
+          (block as IGallery).fields.images.map(addPlaiceholder)
+        )
       } as GalleryBlock;
     case 'text':
       return {
         contentType: 'text',
+        id: block.sys.id,
         heading: (block as IText).fields.heading,
         text: (block as IText).fields.text
       } as TextBlock;
   }
+};
+
+const addPlaiceholder = async (image: Asset): Promise<Image> => {
+  const { img, base64 } = await getPlaiceholder(
+    `https:${image.fields.file.url}`
+  );
+  return {
+    ...image,
+    plaiceholder: { img, base64 }
+  };
 };

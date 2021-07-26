@@ -1,15 +1,22 @@
 import { Document } from '@contentful/rich-text-types';
 import { Asset } from 'contentful';
+import { IGetPlaiceholderReturn } from 'plaiceholder';
 
 export interface TextBlock {
   contentType: 'text';
+  id: string;
   heading?: string;
   text?: Document;
 }
 
+export interface Image extends Asset {
+  plaiceholder?: Omit<IGetPlaiceholderReturn, 'svg' | 'css' | 'blurhash'>;
+}
+
 export interface GalleryBlock {
   contentType: 'gallery';
-  images?: Asset[];
+  id: string;
+  images?: Image[];
 }
 
 export interface HeroBlock {
