@@ -1,12 +1,12 @@
-import { createClient } from 'contentful';
-//import { getPlaiceholder } from 'plaiceholder';
+import { Asset, createClient } from 'contentful';
+import { getPlaiceholder } from 'plaiceholder';
 import {
   IGallery,
   IPage,
   IPageFields,
   IText
 } from 'types/contentful/contentful';
-import { GalleryBlock, Page, TextBlock } from 'types/local';
+import { GalleryBlock, Page, TextBlock, Image } from 'types/local';
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -38,10 +38,9 @@ const formatBlock = async (
       return {
         contentType: 'gallery',
         id: block.sys.id,
-        images: (block as IGallery).fields.images
-        /* images: await Promise.all(
+        images: await Promise.all(
           (block as IGallery).fields.images.map(addPlaiceholder)
-        ) */
+        )
       } as GalleryBlock;
     case 'text':
       return {
@@ -53,7 +52,7 @@ const formatBlock = async (
   }
 };
 
-/* const addPlaiceholder = async (image: Asset): Promise<Image> => {
+const addPlaiceholder = async (image: Asset): Promise<Image> => {
   const { img, base64 } = await getPlaiceholder(
     `https:${image.fields.file.url}`
   );
@@ -61,4 +60,4 @@ const formatBlock = async (
     ...image,
     plaiceholder: { img, base64 }
   };
-}; */
+};

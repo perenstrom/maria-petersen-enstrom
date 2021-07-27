@@ -8,12 +8,12 @@ export const GalleryBlock: React.FC<GalleryBlockType> = ({ images }) => {
     <Block>
       {images.map(image => (
         <Image
-          src={`https:${image.fields.file.url}`}
-          width={image.fields.file.details.image.width}
-          height={image.fields.file.details.image.height}
+          {...image.plaiceholder.img}
           key={image.fields.file.fileName}
-          //placeholder="blur"
-          //blurDataURL={image.plaiceholder.base64}
+          alt=""
+          layout="responsive"
+          placeholder="blur"
+          blurDataURL={image.plaiceholder.base64}
         />
       ))}
     </Block>
