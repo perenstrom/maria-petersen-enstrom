@@ -11,6 +11,7 @@ export interface TextBlock {
 
 export interface Image extends Asset {
   plaiceholder?: Omit<IGetPlaiceholderReturn, 'svg' | 'css' | 'blurhash'>;
+  widthRatio: number;
 }
 
 export interface GalleryBlock {

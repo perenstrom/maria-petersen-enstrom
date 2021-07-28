@@ -39,7 +39,9 @@ const formatBlock = async (
         contentType: 'gallery',
         id: block.sys.id,
         images: await Promise.all(
-          (block as IGallery).fields.images.map(addPlaiceholder)
+          (block as IGallery).fields.images.map((image, _, array) =>
+            formatImage(image, array)
+          )
         )
       } as GalleryBlock;
     case 'text':
@@ -52,12 +54,42 @@ const formatBlock = async (
   }
 };
 
-const addPlaiceholder = async (image: Asset): Promise<Image> => {
+const formatImage = async (image: Asset, array: Asset[]): Promise<Image> => {
+  const plaiceholder = await getPlaiceholderData(image);
+  const widthRatio = getWidthRatio(image, array);
+  return {
+    ...image,
+    ...plaiceholder,
+    ...widthRatio
+  };
+};
+
+const getPlaiceholderData = async (
+  image: Asset
+): Promise<Pick<Image, 'plaiceholder'>> => {
   const { img, base64 } = await getPlaiceholder(
     `https:${image.fields.file.url}`
   );
   return {
-    ...image,
     plaiceholder: { img, base64 }
   };
+};
+
+const getWidthRatio = (
+  image: Asset,
+  array: Asset[]
+): Pick<Image, 'widthRatio'> => {
+  const totalWidth = array.reduce(
+    (accumulator, currentImage) =>
+      accumulator +
+      currentImage.fields.file.details.image.width /
+        currentImage.fields.file.details.image.height,
+    0
+  );
+
+  const ratio =
+    image.fields.file.details.image.width /
+    image.fields.file.details.image.height;
+
+  return { widthRatio: ratio / totalWidth };
 };
