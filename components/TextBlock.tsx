@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 import {
   documentToReactComponents,
   Options
@@ -20,11 +20,13 @@ const renderOptions: Options = {
 
 export const TextBlock: React.FC<TextBlockType> = ({ heading, text }) => {
   return (
-    <Block>
-      <Typography variant="h2" gutterBottom={true}>
-        {heading}
-      </Typography>
-      {documentToReactComponents(text, renderOptions)}
-    </Block>
+    <Container maxWidth="md">
+      <Block>
+        <Typography variant="h2" gutterBottom={true}>
+          {heading}
+        </Typography>
+        {documentToReactComponents(text, renderOptions)}
+      </Block>
+    </Container>
   );
 };
