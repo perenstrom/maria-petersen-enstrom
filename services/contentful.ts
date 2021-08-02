@@ -26,7 +26,12 @@ export const getMainPage = async (): Promise<Page> => {
     slug: page.fields.slug,
     heading: page.fields.heading,
     heroImage: page.fields.heroImage,
-    blocks: await Promise.all(page.fields.blocks.map(formatBlock))
+    blocks: await Promise.all(page.fields.blocks.map(formatBlock)),
+    meta: {
+      title: page.fields.metaTitle,
+      description: page.fields.metaDescription,
+      image: page.fields.metaImage.fields.file.url
+    }
   };
 };
 

@@ -31,4 +31,9 @@ export interface Page {
   heading?: string;
   heroImage?: Asset;
   blocks: (TextBlock | GalleryBlock)[];
+  meta: {
+    title: string;
+    description: string;
+    image: string;
+  }
 }

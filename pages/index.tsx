@@ -18,6 +18,10 @@ const IndexPage: NextPage<Props> = ({ pageData }) => {
       <HeroBlock heading={pageData.heading} heroImage={pageData.heroImage} />
         <Head>
           <title>Maria Petersén Enström Design</title>
+          <meta property="og:title" content={pageData.meta.title} />
+          <meta property="og:image" content={pageData.meta.image} />
+          <meta property="og:description" content={pageData.meta.description} />
+          <meta name="Description" content={pageData.meta.description} />
         </Head>
         <Box mt={6} mb={6}>
           {pageData.blocks.map(block => {

@@ -43,6 +43,15 @@ export interface IPageFields {
 
   /** Blocks */
   blocks?: (IGallery | IHero | IText)[] | undefined;
+
+  /** Meta Title */
+  metaTitle?: string | undefined;
+
+  /** Meta Description */
+  metaDescription?: string | undefined;
+
+  /** Meta Image */
+  metaImage?: Asset | undefined;
 }
 
 export interface IPage extends Entry<IPageFields> {
