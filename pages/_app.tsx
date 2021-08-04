@@ -18,6 +18,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+        {process.env.NEXT_PUBLIC_PREVIEW === "TRUE" && (
+          <meta name="robots" content="noindex, nofollow" />
+        )}
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
