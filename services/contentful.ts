@@ -10,7 +10,8 @@ import { GalleryBlock, Page, TextBlock, Image } from 'types/local';
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  host: process.env.CONTENTFUL_HOST || 'cdn.contentful.com'
 });
 
 export const getMainPage = async (): Promise<Page> => {
